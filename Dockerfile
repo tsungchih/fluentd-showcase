@@ -39,6 +39,6 @@ ONBUILD COPY plugins /fluentd/plugins/
 ENV FLUENTD_OPT=""
 ENV FLUENTD_CONF="fluent.conf"
 
-EXPOSE 24220 24224 5140
+EXPOSE 24220 5140
 
 CMD exec fluentd -c /fluentd/etc/$FLUENTD_CONF -p /fluentd/plugins $FLUENTD_OPT
