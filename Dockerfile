@@ -1,10 +1,6 @@
 FROM alpine:latest
-MAINTAINER TAGOMORI Satoshi <tagomoris@gmail.com>
-LABEL Description="Fluentd docker image" Vendor="Fluent Organization" Version="1.1"
+MAINTAINER gtclai <tsungchih.hd@gmail.com>
 
-# Do not split this into multiple RUN!
-# Docker creates a layer for every RUN-Statement
-# therefore an 'apk delete build*' has no effect
 RUN apk --no-cache --update add \
                             build-base \
                             ca-certificates \
@@ -14,6 +10,7 @@ RUN apk --no-cache --update add \
     echo 'gem: --no-document' >> /etc/gemrc && \
     gem install oj && \
     gem install fluentd -v 0.12.24 && \
+    gem install fluent-plugin-kafka -v 0.1.4 && \
     apk del build-base ruby-dev && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/*
 
